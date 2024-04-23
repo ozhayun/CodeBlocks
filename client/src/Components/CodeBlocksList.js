@@ -12,7 +12,11 @@ function CodeBlocksList() {
     useEffect(() => {
         const fetchCodeBlocks = async () => {
             try {
-                const response = await axios.get('/codeblocks');
+                console.log()
+                console.log("BaseURL:")
+                console.log(`${baseURL}`)
+                console.log()
+                const response = await axios.get(`${baseURL}/codeblocks`);
                 setCodeBlocks(response.data);
             } catch (error) {
                 console.error('Error fetching code blocks:', error);
