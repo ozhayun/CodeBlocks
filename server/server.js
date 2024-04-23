@@ -9,9 +9,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-
-console.log('MongoDB URI:', process.env.MONGO_URI);
-
 mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -22,6 +19,10 @@ mongoose.connect(process.env.MONGO_URI, {
 
 // Get code blocks from DB
 app.get('/codeblocks', async (req, res) => {
+    console.log(" ")
+    console.log("in /codeblocks")
+    console.log(" ")
+
     try {
         const blocks = await CodeBlock.find();
         res.json(blocks);
