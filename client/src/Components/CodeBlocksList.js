@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import "./CodeBlocksList.css"
 
-const baseURL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
+const baseURL = process.env.REACT_APP_SOCKET_URL || 'http://localhost:3001';
 axios.defaults.baseURL = baseURL;
 
 function CodeBlocksList() {
@@ -12,10 +12,6 @@ function CodeBlocksList() {
     useEffect(() => {
         const fetchCodeBlocks = async () => {
             try {
-                console.log()
-                console.log("BaseURL:")
-                console.log(`${baseURL}`)
-                console.log()
                 const response = await axios.get(`${baseURL}/codeblocks`);
                 setCodeBlocks(response.data);
             } catch (error) {
