@@ -6,7 +6,12 @@ const mongoose = require("mongoose");
 
 const app = express();
 
-app.use(cors());
+const corsOptions = {
+    origin: 'https://codeblocksharing.netlify.app',
+    optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 mongoose.connect(process.env.MONGO_URI, {
