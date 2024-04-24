@@ -27,7 +27,7 @@ function CodeBlocksList() {
             <h1>Code Blocks List</h1>
             <div className="code-blocks-grid">
                 {codeBlocks.map((block, index) => (
-                    <Link key={index} to={`/code/${block.id}`} className="code-block-link">
+                    <Link key={index} to={`/codeblocks/${block._id}`} className="code-block-link">
                         <div className="code-block">
                             <h3>{block.title}</h3>
                         </div>
