@@ -52,11 +52,11 @@ function CodeBlockPage () {
     }, [codeBlock])
 
     const handleUpdateCode = (e) => {
-        console.log("Role!!!", role)
         if (role !== 'mentor') {
             const updatedCode = e.target.value;
             setCodeBlock(prev => ({...prev, code: updatedCode}));
             if (socket.current) {
+                console.log("Sending update code event");
                 socket.current.emit('update code', id, updatedCode);
             }
         }

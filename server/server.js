@@ -42,8 +42,14 @@ io.on('connection', (socket) => {
     });
 
     socket.on('update code', (codeBlockId, newCode) => {
-        socket.to(codeBlockId).emit('code updated', newCode);
-    })
+        CodeBlock.findByIdAndUpdate(codeBlockId, { code: newCode }, { new: true })
+            .then(updatedBlock => {
+                socket.to(codeBlockId).emit('code updated', newCode);
+            })
+            .catch(err => {
+                console.error("Error updating code block:", err);
+            });
+    });
 
     socket.on('disconnect', () => {
         const { codeBlockId } = socket;
