@@ -6,11 +6,6 @@ import "./CodeBlocksList.css"
 const baseURL = process.env.REACT_APP_SOCKET_URL || 'http://localhost:3001';
 axios.defaults.baseURL = baseURL;
 
-console.log("")
-console.log("im in CodeBlocksList.js")
-console.log("my base url:", baseURL)
-console.log("")
-
 function CodeBlocksList() {
     const [codeBlocks, setCodeBlocks] = useState([]);
 

@@ -16,7 +16,9 @@ app.use(express.json());
 
 mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    socketTimeoutMS: 30000,
+    connectTimeoutMS: 30000,
 })
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.log('MongoDB connection error:', err));
@@ -24,10 +26,6 @@ mongoose.connect(process.env.MONGO_URI, {
 
 // Get code blocks from DB
 app.get('/codeblocks', async (req, res) => {
-    console.log(" ")
-    console.log("in /codeblocks")
-    console.log(" ")
-
     try {
         const blocks = await CodeBlock.find();
         res.json(blocks);
