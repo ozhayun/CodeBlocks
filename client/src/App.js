@@ -8,7 +8,7 @@ function App() {
   return (
       <Router>
         <Routes>
-          <Route path="/" element={<CodeBlocksList />} />
+            <Route path="/" element={<CodeBlocksList />} />
             <Route path="/codeblocks/:id" element={<CodeBlockPage />} />
         </Routes>
       </Router>
