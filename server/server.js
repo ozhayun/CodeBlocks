@@ -26,12 +26,11 @@ mongoose.connect(process.env.MONGO_URI, {
 
 io.on('connection', (socket) => {
     socket.on('join', (codeBlockId) => {
+        console.log(`Socket ${socket.id} joined room ${codeBlockId}`);
         if (!usersTrack[codeBlockId]) {
-            console.log('Assigning first user as mentor');
             usersTrack[codeBlockId] = { count: 1, isMentor: true };
             socket.emit('role', { role: 'mentor' });
         } else {
-            console.log('Assigning new user as student');
             usersTrack[codeBlockId].count++;
             socket.emit('role', { role: 'student' });
         }
@@ -67,7 +66,17 @@ io.on('connection', (socket) => {
             }
         }
     });
+
+    socket.on('correct solution', (codeBlockId) => {
+        console.log(`Broadcasting correct solution to room ${codeBlockId}`);
+        io.in(codeBlockId).emit('solution matched', true);
+    });
+
+    socket.on('solution no longer correct', (codeBlockId) => {
+        io.in(codeBlockId).emit('solution matched', false);
+    });
 })
+
 
 // Lobby page
 app.get('/', (req, res) => {
