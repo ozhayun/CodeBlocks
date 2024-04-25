@@ -15,6 +15,8 @@ function CodeBlockPage() {
     const navigate = useNavigate();
 
     useEffect(() => {
+
+        // Create socket connection
         const currentSocket = io.connect(process.env.REACT_APP_SOCKET_URL || 'http://localhost:3001', {
             withCredentials: true,
             transports: ['websocket']
@@ -36,15 +38,19 @@ function CodeBlockPage() {
 
         currentSocket.emit('join', id);
 
+        // Fetch code block from server by id
         axios.get(`/codeblocks/${id}`)
             .then(response => {
                 setCodeBlock(response.data);
+
+                // Emit 'correct solution' event if the code matches the solution
                 if (response.data.code === response.data.solution) {
                     socket.current.emit('correct solution', id);
                 }
             })
             .catch(error => console.error('Error fetching code block: ', error));
 
+        // Cleanup socket listeners and disconnect
         return () => {
             currentSocket.off('role');
             currentSocket.off('code updated');
@@ -64,6 +70,7 @@ function CodeBlockPage() {
         navigate('/');
     }
 
+    // Handle code update by the student
     const handleUpdateCode = (e) => {
         if (role !== 'mentor') {
             const updatedCode = e.target.value;
@@ -71,8 +78,11 @@ function CodeBlockPage() {
             const isCorrect = updatedCode === codeBlock.solution;
             setIsCodeCorrect(isCorrect);
 
+            // Emit 'update code' event with the new code
             if (socket.current) {
                 socket.current.emit('update code', id, updatedCode);
+
+                // Emit 'correct solution' or 'solution no longer correct' event based on code correctness
                 if (isCorrect) {
                     socket.current.emit('correct solution', id);
                 } else {

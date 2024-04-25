@@ -3,12 +3,14 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import "./CodeBlocksList.css"
 
+// For running on deployed server and in the local environment
 const baseURL = process.env.REACT_APP_SOCKET_URL || 'http://localhost:3001';
 axios.defaults.baseURL = baseURL;
 
 function CodeBlocksList() {
     const [codeBlocks, setCodeBlocks] = useState([]);
 
+    // Get codeblocks when the component initializes
     useEffect(() => {
         const fetchCodeBlocks = async () => {
             try {
