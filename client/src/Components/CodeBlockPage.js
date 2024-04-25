@@ -18,7 +18,7 @@ function CodeBlockPage() {
             withCredentials: true,
             transports: ['websocket']
         });
-        
+
         socket.current = currentSocket;
 
         currentSocket.on('role', ({ role }) => {

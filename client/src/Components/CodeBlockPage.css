@@ -13,8 +13,10 @@
 }
 
 .code-block-textarea {
+    height: 50vh;
     width: 60%;
-    height: 300px;
+    max-width: 800px;
+    margin: 20px;
     background-color: #1e2127;
     color: #abb2bf;
     border: 2px solid #ccc;
@@ -44,4 +46,22 @@
 
 h2{
     color: #c8f9ff;
+}
+
+@media (max-width: 767px) {
+    .code-block-textarea {
+        width: 90%;
+    }
+}
+
+@media (min-width: 768px) {
+    .code-block-textarea {
+        width: 70%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .code-block-textarea {
+        width: 60%;
+    }
 }
