@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Reverse a String",
+    "code": "function reverseString(str) {\n  if (!str) return '';\n  let reversed = '';\n  for (let i = str.length - 1; i >= 0; i--) {\n    reversed += str[i];\n  }\n  return reversed;\n}",
+    "solution": "function reverseString(str) {\n  if (!str) return '';\n  let reversed = '';\n  for (let i = str.length - 1; i >= 0; i--) {\n    reversed += str[i];\n  }\n  return reversed;\n}"
+  },
+  {
+    "title": "Check if Number is Prime",
+    "code": "function isPrime(num) {\n  for (let i = 2; i < num; i++) {\n    if (num % i === 0) return false;\n  }\n  return num > 1;\n}",
+    "solution": "function isPrime(num) {\n  for (let i = 2, sqrt = Math.sqrt(num); i <= sqrt; i++) {\n    if (num % i === 0) return false;\n  }\n  return num > 1;\n}"
+  },
+  {
+    "title": "Fibonacci Series",
+    "code": "function fibonacci(n) {\n  const fib = [0, 1];\n  for (let i = 2; i <= n; i++) {\n    fib[i] = fib[i - 1] + fib[i - 2];\n  }\n  return fib;\n}",
+    "solution": "function fibonacci(n) {\n  if (n < 2) return n;\n  let fibPrev = 1;\n  let fibPrevPrev = 0;\n  let fibCurr = 1;\n  for (let i = 2; i <= n; i++) {\n    fibCurr = fibPrev + fibPrevPrev;\n    fibPrevPrev = fibPrev;\n    fibPrev = fibCurr;\n  }\n  return fibCurr;\n}"
+  },
+  {
+    "title": "Palindrome Checker",
+    "code": "function isPalindrome(str) {\n  str = str.replace(/W/g, '').toLowerCase();\n  return str === str.split('').reverse().join('');\n}",
+    "solution": "function isPalindrome(str) {\n  const cleanStr = str.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();\n  let left = 0;\n  let right = cleanStr.length - 1;\n  while (left < right) {\n    if (cleanStr[left] !== cleanStr[right]) return false;\n    left++;\n    right--;\n  }\n  return true;\n}"
+  },
+  {
+    "title": "Find Maximum Number in Array",
+    "code": "function findMax(arr) {\n  return Math.max.apply(null, arr);\n}",
+    "solution": "function findMax(arr) {\n  let max = arr[0];\n  for (let i = 1; i < arr.length; i++) {\n    if (arr[i] > max) {\n      max = arr[i];\n    }\n  }\n  return max;\n}"
+  },
+  {
+    "title": "Sort Array of Numbers",
+    "code": "function sortArray(arr) {\n  return arr.sort((a, b) => a - b);\n}",
+    "solution": "function sortArray(arr) {\n  for (let i = 0; i < arr.length; i++) {\n    for (let j = 0; j < arr.length - i - 1; j++) {\n      if (arr[j] > arr[j + 1]) {\n        let temp = arr[j];\n        arr[j] = arr[j + 1];\n        arr[j + 1] = temp;\n      }\n    }\n  }\n  return arr;\n}"
+  }
+]
