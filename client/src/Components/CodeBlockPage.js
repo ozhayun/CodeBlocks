@@ -18,6 +18,7 @@ function CodeBlockPage() {
             withCredentials: true,
             transports: ['websocket']
         });
+        
         socket.current = currentSocket;
 
         currentSocket.on('role', ({ role }) => {
@@ -39,7 +40,8 @@ function CodeBlockPage() {
                 setCodeBlock(response.data);
                 if (response.data.code === response.data.solution) {
                     socket.current.emit('correct solution', id);
-                }            })
+                }
+            })
             .catch(error => console.error('Error fetching code block: ', error));
 
         return () => {
@@ -77,14 +79,15 @@ function CodeBlockPage() {
     return (
         <div className="code-block-container">
             <h2>{codeBlock ? codeBlock.title : 'Loading code...'}</h2>
-            <textarea className="code-block-textarea"
-                      value={codeBlock ? codeBlock.code : ''}
-                      onChange={handleUpdateCode}
-                      readOnly={role === 'mentor'}
+            <textarea
+                className="code-block-textarea"
+                value={codeBlock ? codeBlock.code : ''}
+                onChange={handleUpdateCode}
+                readOnly={role === 'mentor'}
             />
-            {isCodeCorrect && (
-                <span className="smiley-face" role="img" aria-label="Smiley face">😊</span>
-            )}
+            <span className={"smiley-face" + (isCodeCorrect ? " visible" : "")} role="img" aria-label="Smiley face">
+            😊
+        </span>
         </div>
     );
 }

@@ -4,18 +4,44 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+    background-color: #282c34;
+    color: #abb2bf;
+    min-height: 100vh;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 20px;
 }
 
 .code-block-textarea {
-    width: 50%;
+    width: 60%;
     height: 300px;
-    box-sizing: border-box;
+    background-color: #1e2127;
+    color: #abb2bf;
     border: 2px solid #ccc;
     border-radius: 4px;
+    resize: none;
+    padding: 10px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.code-block-textarea:focus {
+    border-color: #61afef;
 }
 
 .smiley-face {
-    font-size: 48px;
+    font-size: 2rem;
+    line-height: 2rem;
+    visibility: hidden;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 2rem;
+    color: #98c379;
+}
+
+.smiley-face.visible {
+    visibility: visible;
+}
+
+h2{
+    color: #c8f9ff;
 }
