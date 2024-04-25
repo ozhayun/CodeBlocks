@@ -26,3 +26,5 @@ The application is deployed at https://codeblocksharing.netlify.app.
 ## GitHub Repository
 
 Find the source code for the application in this GitHub repository: https://github.com/ozhayun/CodeBlocks.
+
+To test the smiley feature, you can check the `MongoDB Initialize Entries.json` file in the repository.
