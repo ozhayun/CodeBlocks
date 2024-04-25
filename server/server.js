@@ -26,7 +26,6 @@ mongoose.connect(process.env.MONGO_URI, {
 
 io.on('connection', (socket) => {
     socket.on('join', (codeBlockId) => {
-        console.log(`Socket ${socket.id} joined room ${codeBlockId}`);
         if (!usersTrack[codeBlockId]) {
             usersTrack[codeBlockId] = { count: 1, isMentor: true };
             socket.emit('role', { role: 'mentor' });
@@ -68,7 +67,6 @@ io.on('connection', (socket) => {
     });
 
     socket.on('correct solution', (codeBlockId) => {
-        console.log(`Broadcasting correct solution to room ${codeBlockId}`);
         io.in(codeBlockId).emit('solution matched', true);
     });
 

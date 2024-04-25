@@ -21,7 +21,6 @@ function CodeBlockPage() {
         socket.current = currentSocket;
 
         currentSocket.on('role', ({ role }) => {
-            console.log('Assigned role:', role);
             setRole(role);
         });
 
@@ -30,7 +29,6 @@ function CodeBlockPage() {
         });
 
         currentSocket.on('solution matched', (isCorrect) => {
-            console.log('Solution matched event received:', isCorrect);
             setIsCodeCorrect(isCorrect);
         });
 
@@ -66,7 +64,6 @@ function CodeBlockPage() {
             setIsCodeCorrect(isCorrect);
 
             if (socket.current) {
-                console.log("Sending update code event");
                 socket.current.emit('update code', id, updatedCode);
                 if (isCorrect) {
                     socket.current.emit('correct solution', id);
@@ -76,7 +73,6 @@ function CodeBlockPage() {
             }
         }
     };
-
 
     return (
         <div className="code-block-container">
