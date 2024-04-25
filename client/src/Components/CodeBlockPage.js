@@ -94,7 +94,7 @@ function CodeBlockPage() {
 
     return (
         <div className="code-block-container">
-            <button onClick={goBack} className="return-button">Back to lobby</button>
+            <button onClick={goBack} className="return-button">Back to Lobby</button>
             <h2>{codeBlock ? codeBlock.title : 'Loading code...'}</h2>
             <textarea
                 className="code-block-textarea"
@@ -103,7 +103,7 @@ function CodeBlockPage() {
                 readOnly={role === 'mentor'}
             />
             <span className={"smiley-face" + (isCodeCorrect ? " visible" : "")} role="img" aria-label="Smiley face">
-            😊
+            😃
             </span>
         </div>
     );

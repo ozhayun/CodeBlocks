@@ -17,13 +17,13 @@
     height: 50vh;
     width: 60%;
     max-width: 800px;
-    margin: 20px;
+    margin: 15px;
     background-color: #1e2127;
     color: #abb2bf;
     border: 2px solid #ccc;
     border-radius: 4px;
     resize: none;
-    padding: 10px;
+    padding: 20px;
     box-sizing: border-box;
     outline: none;
 }
@@ -33,11 +33,11 @@
 }
 
 .smiley-face {
-    font-size: 2rem;
+    margin-top: 1rem;
+    font-size: 4rem;
     line-height: 2rem;
     visibility: hidden;
     text-align: center;
-    margin-top: 2rem;
     color: #98c379;
 }
 

@@ -24,7 +24,11 @@ mongoose.connect(process.env.MONGO_URI, {
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.log('MongoDB connection error:', err));
 
+
+// Handle socket.io events
 io.on('connection', (socket) => {
+
+    // handle 'join' event to determine the role of the client
     socket.on('join', (codeBlockId) => {
         if (!usersTrack[codeBlockId]) {
             usersTrack[codeBlockId] = { count: 1, isMentor: true };
@@ -37,6 +41,7 @@ io.on('connection', (socket) => {
         socket.codeBlockId = codeBlockId;
     });
 
+    // handle 'update code' event to apply changes on DB
     socket.on('update code', (codeBlockId, newCode) => {
         CodeBlock.findByIdAndUpdate(codeBlockId, { code: newCode }, { new: true })
             .then(updatedBlock => {
@@ -47,6 +52,7 @@ io.on('connection', (socket) => {
             });
     });
 
+    // handle 'disconnect' event logic
     socket.on('disconnect', () => {
         const { codeBlockId } = socket;
         if (usersTrack[codeBlockId]) {
@@ -76,7 +82,7 @@ io.on('connection', (socket) => {
 })
 
 
-// Lobby page
+// Lobby page - defauly route
 app.get('/', (req, res) => {
     res.send('Hello World!');
 });
