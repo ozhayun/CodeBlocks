@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import io from 'socket.io-client';
 import hljs from "highlight.js";
 import 'highlight.js/styles/default.css';
@@ -12,6 +12,7 @@ function CodeBlockPage() {
     const [role, setRole] = useState('student');
     const [isCodeCorrect, setIsCodeCorrect] = useState(false);
     const socket = useRef(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const currentSocket = io.connect(process.env.REACT_APP_SOCKET_URL || 'http://localhost:3001', {
@@ -58,6 +59,11 @@ function CodeBlockPage() {
         }
     }, [codeBlock]);
 
+    // Return to the lobby page
+    const goBack = () => {
+        navigate('/');
+    }
+
     const handleUpdateCode = (e) => {
         if (role !== 'mentor') {
             const updatedCode = e.target.value;
@@ -78,6 +84,7 @@ function CodeBlockPage() {
 
     return (
         <div className="code-block-container">
+            <button onClick={goBack} className="return-button">Back to lobby</button>
             <h2>{codeBlock ? codeBlock.title : 'Loading code...'}</h2>
             <textarea
                 className="code-block-textarea"
@@ -87,7 +94,7 @@ function CodeBlockPage() {
             />
             <span className={"smiley-face" + (isCodeCorrect ? " visible" : "")} role="img" aria-label="Smiley face">
             😊
-        </span>
+            </span>
         </div>
     );
 }

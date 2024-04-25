@@ -1,5 +1,6 @@
 .code-block-container {
     display: flex;
+    position: relative;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -46,6 +47,25 @@
 
 h2{
     color: #c8f9ff;
+}
+
+.return-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 5px 10px;
+    background-color: #309cf8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: background-color 0.3s ease;
+    z-index: 10;
+}
+
+.return-button:hover {
+    background-color: #70bdff;
 }
 
 @media (max-width: 767px) {
