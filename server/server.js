@@ -18,8 +18,6 @@ app.use(express.json());
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
     socketTimeoutMS: 30000,
     connectTimeoutMS: 30000,
 })
@@ -76,14 +74,17 @@ app.get('/', (req, res) => {
     res.send('Hello World!');
 });
 
-
 // Get code blocks from DB
 app.get('/codeblocks', async (req, res) => {
     try {
         const blocks = await CodeBlock.find();
+        if (blocks.length === 0) {
+            return res.status(404).json({ message: 'No code blocks found' });
+        }
         res.json(blocks);
     } catch (err) {
-        res.status(500).json({ message: err.message });
+        console.error('Error fetching code blocks:', err);
+        res.status(500).json({ error: err.message });
     }
 });
 

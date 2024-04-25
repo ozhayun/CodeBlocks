@@ -6,6 +6,6 @@ const codeBlockSchema = new mongoose.Schema({
     solution: { type: String, required: false }
 });
 
-const CodeBlock = mongoose.model('CodeBlock', codeBlockSchema);
+const CodeBlock = mongoose.model('CodeBlock', codeBlockSchema, 'CodeDB');
 
 module.exports = CodeBlock;
